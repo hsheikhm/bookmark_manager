@@ -26,11 +26,11 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
 
-  config.profile_examples = 10
-
-  config.order = :random
-
-  Kernel.srand config.seed
+  # config.profile_examples = 10
+  #
+  # config.order = :random
+  #
+  # Kernel.srand config.seed
 
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction
