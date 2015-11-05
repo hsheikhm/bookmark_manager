@@ -28,9 +28,11 @@ class BookmarkManager < Sinatra::Base
     redirect('/links/index')
   end
 
-  get '/tags/bubbles' do
-    @tag = Tag.first(tag: params[:filter])
+  get '/tags/filter' do
+    @tag = Tag.all(tag: params[:filter])
+    p @tag
     @links = (@tag ? @tag.links : [])
+    p @links
     erb :'links/filter'
   end
 
