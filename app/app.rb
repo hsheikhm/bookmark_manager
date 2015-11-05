@@ -22,17 +22,17 @@ class BookmarkManager < Sinatra::Base
 
   post '/links' do
     link = Link.new(url: params[:url], title: params[:title])
-    tag = Tag.create(tag: params[:tag])
-    link.tags << tag
+    tag1 = Tag.first_or_create(tag: params[:tag1])
+    tag2 = Tag.first_or_create(tag: params[:tag2])
+    tag3 = Tag.first_or_create(tag: params[:tag3])
+    link.tags << tag1 << tag2 << tag3
     link.save
     redirect('/links/index')
   end
 
   get '/tags/filter' do
     @tag = Tag.all(tag: params[:filter])
-    p @tag
     @links = (@tag ? @tag.links : [])
-    p @links
     erb :'links/filter'
   end
 
